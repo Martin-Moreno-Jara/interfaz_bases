@@ -65,28 +65,7 @@ public class Conexion {
             System.out.println("Imposible cerrar conexion ... FAIL");
         }
     }
-    public static void printTable(String table){
-        //realizar consulta
-        try {
-// Preparamos la consulta
-            Statement s = conexion.createStatement();
-            ResultSet rs = s.executeQuery ("select * from "+table+" where "+table+".est_cedula =2");
-// Recorremos el resultado, mientras haya registros para leer, y escribimos el resultado en pantalla.
 
-            while (rs.next())
-            {
-                System.out.println(
-                        "ID: " +rs.getInt (1) +
-                                "\tNombre: " + rs.getString (2)+
-                                "\tTipo: " + rs.getString(3)+
-                                "\tCosto: "+ rs.getInt(4)+
-                                "\tExpo: " + rs.getString(5)
-                );
-            }
-        } catch (SQLException ex) {
-            System.out.println("Imposible realizar consulta ... FAIL");
-        }
-    }
     public static void createUser(String nombre,String contra){
         //realizar consulta
         try {
