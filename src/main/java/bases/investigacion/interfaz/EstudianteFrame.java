@@ -411,7 +411,7 @@ public void panelProyectosCambiar(){
     }//GEN-LAST:event_publicacionesButtonActionPerformed
 
     private void cerrarSesionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionButtonActionPerformed
-        conexion.Consultas.setCerrarSesion();
+        conexion.Verificar.setCerrarSesion();
         Login login = new Login();
         dispose();
     }//GEN-LAST:event_cerrarSesionButtonActionPerformed
@@ -419,7 +419,6 @@ public void panelProyectosCambiar(){
     private void buttonPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPerfilActionPerformed
         // TODO add your handling code here:
         panelPerfilCambiar();        
-        Conexion.printTable("estudiante");
                 
     }//GEN-LAST:event_buttonPerfilActionPerformed
 

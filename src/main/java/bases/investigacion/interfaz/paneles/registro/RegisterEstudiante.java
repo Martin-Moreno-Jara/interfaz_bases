@@ -4,6 +4,11 @@
  */
 package bases.investigacion.interfaz.paneles.registro;
 
+import static conexion.Conexion.getConexion;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -25,7 +30,7 @@ public class RegisterEstudiante extends javax.swing.JPanel {
         initComponents();
         llenarCB();
     }
-
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,13 +42,30 @@ public class RegisterEstudiante extends javax.swing.JPanel {
         ArrayList programas = new ArrayList();
         programa.removeAllItems();
         programa.addItem("-");
-        programas = conexion.Consultas.comboboxPrograma();
+        programas = conexion.ComboBoxes.comboboxPrograma();
         Iterator iterador = programas.iterator();
         while(iterador.hasNext()){
             String eachPrograma = (String) iterador.next();
             programa.addItem(eachPrograma);
         }
-        
+    }
+    public int getIdPrograma(String prog){
+        int num=-1;
+        try{
+            Statement s = conexion.Conexion.getConexion().createStatement();
+            String call = "{CALL getNum_prg(?)}";
+            CallableStatement stmt = getConexion().prepareCall(call);
+            stmt.setString(1,prog);
+            ResultSet rs=stmt.executeQuery();
+
+            while (rs.next())
+            {
+                num=rs.getInt(1);
+            }
+        }catch (SQLException ex) {
+            System.out.println("Error: "+ex.toString());
+        }
+        return num;
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -73,7 +95,7 @@ public class RegisterEstudiante extends javax.swing.JPanel {
         contrasena = new javax.swing.JPasswordField();
         confirmacion = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
-        loginButton1 = new javax.swing.JButton();
+        createBtn = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -101,45 +123,27 @@ public class RegisterEstudiante extends javax.swing.JPanel {
 
         jLabel12.setText("Confirmación");
 
-        cedula.setText("jTextField1");
-
-        nombre.setText("jTextField1");
-
-        edad.setText("jTextField1");
-
-        correo.setText("jTextField1");
-
-        telefono.setText("jTextField1");
-
-        apellido.setText("jTextField1");
-
-        direccion.setText("jTextField1");
-
         tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Pregrado", "Posgrado" }));
 
         programa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        contrasena.setText("jPasswordField1");
-
-        confirmacion.setText("jPasswordField2");
-
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        loginButton1.setBackground(new java.awt.Color(118, 35, 47));
-        loginButton1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        loginButton1.setForeground(new java.awt.Color(255, 255, 255));
-        loginButton1.setText("Crear Usuario");
-        loginButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        createBtn.setBackground(new java.awt.Color(118, 35, 47));
+        createBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        createBtn.setForeground(new java.awt.Color(255, 255, 255));
+        createBtn.setText("Crear Usuario");
+        createBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                loginButton1MouseEntered(evt);
+                createBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                loginButton1MouseExited(evt);
+                createBtnMouseExited(evt);
             }
         });
-        loginButton1.addActionListener(new java.awt.event.ActionListener() {
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton1ActionPerformed(evt);
+                createBtnActionPerformed(evt);
             }
         });
 
@@ -149,12 +153,12 @@ public class RegisterEstudiante extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(loginButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(createBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(34, 34, 34))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(createBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -258,15 +262,15 @@ public class RegisterEstudiante extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButton1MouseEntered
+    private void createBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createBtnMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_loginButton1MouseEntered
+    }//GEN-LAST:event_createBtnMouseEntered
 
-    private void loginButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButton1MouseExited
+    private void createBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createBtnMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_loginButton1MouseExited
+    }//GEN-LAST:event_createBtnMouseExited
 
-    private void loginButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton1ActionPerformed
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         int cedula = Integer.parseInt(this.cedula.getText());
         String nombre= this.nombre.getText();
         String apellido =this.apellido.getText();
@@ -275,18 +279,17 @@ public class RegisterEstudiante extends javax.swing.JPanel {
         String telefono = this.telefono.getText();
         String direccion = this.direccion.getText();
         String tipo = (String)this.tipo.getSelectedItem();
-        String programa = (String)this.programa.getSelectedItem();
+        int programa = getIdPrograma((String)this.programa.getSelectedItem());
         char[] contrasena = this.contrasena.getPassword();
         char[] confirmacion = this.confirmacion.getPassword();
         if(!Arrays.equals(contrasena,confirmacion)){
             JOptionPane.showMessageDialog(this, "La contraseñas no coinciden");
         }else{
-            conexion.Conexion.conectar();
-            conexion.Conexion.createUser(correo,new String(contrasena));
-        }
-        
-        
-    }//GEN-LAST:event_loginButton1ActionPerformed
+            //conexion.Conexion.conectar();
+            //conexion.Conexion.createUser(correo,new String(contrasena));
+            conexion.Registros.registrar_estudiante(cedula, nombre, apellido, edad, correo, telefono, direccion, tipo, programa, new String(contrasena));
+        }      
+    }//GEN-LAST:event_createBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -295,6 +298,7 @@ public class RegisterEstudiante extends javax.swing.JPanel {
     private javax.swing.JPasswordField confirmacion;
     private javax.swing.JPasswordField contrasena;
     private javax.swing.JTextField correo;
+    private javax.swing.JButton createBtn;
     private javax.swing.JTextField direccion;
     private javax.swing.JTextField edad;
     private javax.swing.JLabel jLabel1;
@@ -311,7 +315,6 @@ public class RegisterEstudiante extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JButton loginButton1;
     private javax.swing.JTextField nombre;
     private javax.swing.JComboBox<String> programa;
     private javax.swing.JTextField telefono;

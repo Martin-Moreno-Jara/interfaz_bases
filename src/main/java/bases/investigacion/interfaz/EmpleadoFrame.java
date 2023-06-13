@@ -352,7 +352,7 @@ public class EmpleadoFrame extends javax.swing.JFrame {
 
     private void cerrarSesionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionButtonActionPerformed
         // TODO add your handling code here:
-        conexion.Consultas.setCerrarSesion();
+        conexion.Verificar.setCerrarSesion();
         Login login = new Login();
         dispose();
     }//GEN-LAST:event_cerrarSesionButtonActionPerformed

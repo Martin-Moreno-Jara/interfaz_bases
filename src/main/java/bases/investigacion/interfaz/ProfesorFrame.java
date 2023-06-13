@@ -4,13 +4,13 @@
  */
 package bases.investigacion.interfaz;
 
-import bases.investigacion.interfaz.paneles.profesor.ProfesorPublicaciones;
 import bases.investigacion.interfaz.paneles.profesor.ProfesorPerfil;
 import bases.investigacion.interfaz.paneles.profesor.ProfesorLaboratorios;
-import bases.investigacion.interfaz.paneles.profesor.ProfesorGrupo;
 import bases.investigacion.interfaz.paneles.profesor.ProfesorCrearGrupo;
 import bases.investigacion.interfaz.paneles.estudiante.EstudianteProyectos;
 import bases.investigacion.interfaz.paneles.*;
+import bases.investigacion.interfaz.paneles.estudiante.EstudianteGrupos;
+import bases.investigacion.interfaz.paneles.estudiante.EstudiantePublicaciones;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -47,7 +47,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     public void panelGruposCambiar(){
-    ProfesorGrupo p = new ProfesorGrupo();
+    EstudianteGrupos  p = new EstudianteGrupos();
         p.setSize(variablePanel.getWidth(),variablePanel.getHeight());
         p.setLocation(0,0);
         
@@ -67,7 +67,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
         variablePanel.repaint();
     }
     public void panelPublicacionesCambiar(){
-    ProfesorPublicaciones p = new ProfesorPublicaciones();
+    EstudiantePublicaciones p = new EstudiantePublicaciones();
         p.setSize(variablePanel.getWidth(),variablePanel.getHeight());
         p.setLocation(0,0);
         
@@ -222,7 +222,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(118, 35, 47));
         jButton4.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Gestionar grupo");
+        jButton4.setText("Crear grupo/ver estudiantes");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -267,7 +267,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonPublicaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                    .addComponent(buttonPublicaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -339,7 +339,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
         variablePanel.setLayout(variablePanelLayout);
         variablePanelLayout.setHorizontalGroup(
             variablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 818, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         variablePanelLayout.setVerticalGroup(
             variablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,7 +383,7 @@ public class ProfesorFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarSesionButtonMouseExited
 
     private void cerrarSesionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesionButtonActionPerformed
-        conexion.Consultas.setCerrarSesion();
+        conexion.Verificar.setCerrarSesion();
         Login login = new Login();
         dispose();
     }//GEN-LAST:event_cerrarSesionButtonActionPerformed

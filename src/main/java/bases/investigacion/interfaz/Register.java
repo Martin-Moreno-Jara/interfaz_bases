@@ -287,7 +287,7 @@ public class Register extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:   
-        conexion.Consultas.comboboxPrograma();
+        conexion.ComboBoxes.comboboxPrograma();
         Login login = new Login();
         dispose();
      
